@@ -17,6 +17,8 @@ class PersonOperations {
     final db = await dbProvider.database;
     db.update('person', person.toMap(),
         where: "personId=?", whereArgs: [person.id]);
+    print('person updated');
+    print(person.address);
   }
 
   deletePerson(Person person) async {

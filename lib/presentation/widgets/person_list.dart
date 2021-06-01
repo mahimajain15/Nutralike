@@ -27,7 +27,7 @@ class PersonsList extends StatelessWidget {
               padding: const EdgeInsets.all(6.0),
               child: Container(
                   decoration: BoxDecoration(
-                      color: Colors.blue,
+                      color: Colors.grey,
                       borderRadius: BorderRadius.circular(5)),
                   width: MediaQuery.of(context).size.width,
                   height: 50,
@@ -43,7 +43,7 @@ class PersonsList extends StatelessWidget {
                         //     fontWeight: FontWeight.bold),
                         // ),
                         Text(
-                          ' ${persons[index].name}  ${persons[index].cid}',
+                          ' ${persons[index].name}  ${persons[index].cid}', //${persons[index].address}',
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 18,
@@ -62,7 +62,7 @@ class PersonsList extends StatelessWidget {
                                   )
                               );
                             },
-                            color: Colors.orange,
+                            color: Colors.black,
                             child: Icon(Icons.edit, color: Colors.white),
                           ),
                         ),

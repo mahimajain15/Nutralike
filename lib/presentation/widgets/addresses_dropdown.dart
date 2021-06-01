@@ -19,22 +19,23 @@ class AddressesDropDown extends StatefulWidget {
 
 class _AddressesDropDownState extends State<AddressesDropDown> {
   var _item;
+  // String longSpinnerValue = longItems[0];
   @override
   Widget build(BuildContext context) {
     return DropdownButton<Address>(
         hint: Text('Select address'),
-        onChanged: (Address value){
-          setState(() {
-            _item = widget.callback(value);
-          });
-        },
-        value: _item,
         items: widget.addresses.map((address) {
           return DropdownMenuItem(
             value: address,
             child: Text(address.name),
           );
-        }).toList()
+        }).toList(),
+      onChanged: (Address value){
+        setState(() {
+          this._item = widget.callback(value);
+        });
+      },
+      value: _item,
     );
   }
 }

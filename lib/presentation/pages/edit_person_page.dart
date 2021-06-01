@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:nutralike/data/address_operations.dart';
 import 'package:nutralike/data/person_operations.dart';
+import 'package:nutralike/models/address.dart';
 import 'package:nutralike/models/person.dart';
+import 'package:nutralike/presentation/widgets/addresses_dropdown.dart';
 
 class EditPersonPage extends StatefulWidget {
   Person person;
@@ -17,6 +20,15 @@ class EditPersonPage extends StatefulWidget {
 
 class _EditPersonPageState extends State<EditPersonPage> {
   PersonOperations personOperations = PersonOperations();
+  AddressOperations addressOperations = AddressOperations();
+  Address _selectedAddress;
+
+  callback(selectedAddress){
+    setState(() {
+      _selectedAddress = selectedAddress;
+      print(_selectedAddress.name);
+    });
+  }
 
   var _nameController = TextEditingController();
   var _cidController = TextEditingController();
@@ -78,6 +90,12 @@ class _EditPersonPageState extends State<EditPersonPage> {
                       border: OutlineInputBorder(), labelText: 'Password'),
                 ),
               ),
+              FutureBuilder<List<Address>>(
+                future: addressOperations.getAllAddresses(),
+                builder: (context, snapshot) {
+                  return snapshot.hasData ? AddressesDropDown(snapshot.data, callback) : Text('No addresses');
+                },
+              ),
             ],
           ),
         ),
@@ -89,6 +107,7 @@ class _EditPersonPageState extends State<EditPersonPage> {
           widget.person.cid= _cidController.text;
           widget.person.uid = _uidController.text;
           widget.person.pwd = _pwdController.text;
+          widget.person.address = _selectedAddress.id;
           personOperations.updatePerson(widget.person);
         },
       ),
