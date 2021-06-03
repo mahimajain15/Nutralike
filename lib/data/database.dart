@@ -9,8 +9,8 @@ class DatabaseRepository {
   static final DatabaseRepository instance =
   DatabaseRepository.privateConstructor();
 
-  final _databaseName = 'database1 ';
-  final _databaseVersion = 1;
+  final _databaseName = 'db1';
+  final _databaseVersion = 2;
 
   static Database _database;
 
@@ -33,10 +33,10 @@ class DatabaseRepository {
     await db.execute('''
           CREATE TABLE person (
             personId INTEGER PRIMARY KEY AUTOINCREMENT,
-            personName STRING NOT NULL,
-            personCid STRING NOT NULL,
-            personUid STRING NOT NULL,
-            personPwd STRING NOT NULL,
+            personName TEXT NOT NULL,
+            personCid TEXT NOT NULL,
+            personUid TEXT NOT NULL,
+            personPwd TEXT NOT NULL,
             FK_person_address INT NOT NULL,
             FOREIGN KEY (FK_person_address) REFERENCES address (addressId) 
             
@@ -46,7 +46,12 @@ class DatabaseRepository {
     await db.execute('''
           CREATE TABLE address (
             addressId INTEGER PRIMARY KEY AUTOINCREMENT,
-            addressName STRING NOT NULL
+            addressName TEXT NOT NULL,
+            addressStl2 TEXT NOT NULL,
+            addressCity TEXT NOT NULL,
+            addressState TEXT NOT NULL,
+            addressZip TEXT NOT NULL,
+            addressCountry TEXT NOT NULL
           )
           ''');
   }

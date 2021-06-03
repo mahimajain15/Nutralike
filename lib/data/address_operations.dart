@@ -7,6 +7,7 @@ class AddressOperations {
   createAddress(Address address) async {
     final db = await dbProvider.database;
     db.insert('address', address.toMap());
+    print('address inserted');
   }
   Future<List<Address>> getAllAddresses() async {
     final db = await dbProvider.database;

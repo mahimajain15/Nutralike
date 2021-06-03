@@ -11,6 +11,7 @@ class PersonOperations {
     final db = await dbProvider.database;
     db.insert('person', person.toMap());
     print('person inserted');
+    // db.rawQuery('SELECT * FROM person');
   }
 
   updatePerson(Person person) async {
@@ -18,7 +19,7 @@ class PersonOperations {
     db.update('person', person.toMap(),
         where: "personId=?", whereArgs: [person.id]);
     print('person updated');
-    print(person.address);
+    // print(person.);
   }
 
   deletePerson(Person person) async {

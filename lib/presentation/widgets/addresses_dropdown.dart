@@ -27,7 +27,24 @@ class _AddressesDropDownState extends State<AddressesDropDown> {
         items: widget.addresses.map((address) {
           return DropdownMenuItem(
             value: address,
-            child: Text(address.name),
+            child: RichText(
+                text: TextSpan(
+                // text: address.name
+                style: DefaultTextStyle.of(context).style,
+                  children: <TextSpan>[
+                    TextSpan(text: address.name),
+                    TextSpan(text: ', '),
+                    TextSpan(text: address.stl2),
+                    TextSpan(text: ', '),
+                    TextSpan(text: address.city),
+                    TextSpan(text: ', '),
+                    TextSpan(text: address.state),
+                    TextSpan(text: ', '),
+                    TextSpan(text: address.zip),
+                    TextSpan(text: ', '),
+                    TextSpan(text: address.country),
+                  ]
+                ),)
           );
         }).toList(),
       onChanged: (Address value){
