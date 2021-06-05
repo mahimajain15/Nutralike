@@ -80,17 +80,20 @@ class _AddPersonPageState extends State<AddPersonPage> {
               ),
             ),
             Padding(padding: const EdgeInsets.all(10.0),
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: <Widget>[
-                FutureBuilder<List<Address>>(
-                  future: addressOperations.getAllAddresses(),
-                  builder: (context, snapshot) {
-                    return snapshot.hasData ? AddressesDropDown(snapshot.data, callback) : Text('No addresses');
-              },
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: <Widget>[
+                    FutureBuilder<List<Address>>(
+                      future: addressOperations.getAllAddresses(),
+                      builder: (context, snapshot) {
+                        return snapshot.hasData ? AddressesDropDown(snapshot.data, callback) : Text('No addresses');
+                      },
+                    ),
+                  ],
+                ),
+              ),
             ),
-                ], ),),),
             Container(
               margin: EdgeInsets.all(10.0),
               child: RaisedButton(
